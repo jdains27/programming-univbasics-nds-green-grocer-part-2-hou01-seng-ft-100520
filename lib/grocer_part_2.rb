@@ -9,7 +9,8 @@ def apply_coupons(cart, coupons)
       if discount_item[:item] == item[:item]
         count = 0
         if item[:count] == discount_item[:num]
-          discounted = {item: item[:item] + " W/COUPON", price: discount_item[:cost]  discount_item[:num], clearance: item[:clearance], count: item[:count]}
+          discounted = {item: item[:item] + " W/COUPON", price: discount_item[:cost] / discount_item[:num],\
+                          clearance: item[:clearance], count: item[:count]}
           item[:count] -= discount_item[:num]
           cart << discounted
         end
@@ -18,12 +19,13 @@ def apply_coupons(cart, coupons)
             item[:count] -= discount_item[:num]
             count += discount_item[:num]
           end
-          discounted = {item: item[:item] + " W/COUPON", price: discount_item[:cost] discount_item[:num], clearance: item[:clearance], count: count}
+          discounted = {item: item[:item] + " W/COUPON", price: discount_item[:cost]/discount_item[:num],\
+                        clearance: item[:clearance], count: count}
           cart << discounted
         end
       end
     end
-  
+  end
   cart
 end
 
@@ -31,7 +33,6 @@ def apply_clearance(cart)
   # Consult README for inputs and outputs
   #
   # REMEMBER: This method **should** update cart
-  
 end
 
 def checkout(cart, coupons)
