@@ -31,12 +31,7 @@ def apply_clearance(cart)
   # Consult README for inputs and outputs
   #
   # REMEMBER: This method **should** update cart
-  cart.each do |item|
-    if item[:clearance]
-      item[:price] -= (item[:price] * 0.20)
-    end
-  end
-  cart
+  
 end
 
 def checkout(cart, coupons)
@@ -49,5 +44,4 @@ def checkout(cart, coupons)
   #
   # BEFORE it begins the work of calculating the total (or else you might have
   # some irritated customers
-  
 end
