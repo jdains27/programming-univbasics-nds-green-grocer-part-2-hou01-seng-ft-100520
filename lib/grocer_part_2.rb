@@ -4,6 +4,27 @@ def apply_coupons(cart, coupons)
   # Consult README for inputs and outputs
   #
   # REMEMBER: This method **should** update cart
+  cart.each do |item|
+    coupons.each do |discount_item|
+      if discount_item[:item] == item[:item]
+        count = 0
+        if item[:count] == discount_item[:num]
+          discounted = {item: item[:item] + " W/COUPON", price: discount_item[:cost]  discount_item[:num], clearance: item[:clearance], count: item[:count]}
+          item[:count] -= discount_item[:num]
+          cart << discounted
+        end
+        if item[:count] > discount_item[:num]
+          while (item[:count] >= discount_item[:num]) do
+            item[:count] -= discount_item[:num]
+            count += discount_item[:num]
+          end
+          discounted = {item: item[:item] + " W/COUPON", price: discount_item[:cost] discount_item[:num], clearance: item[:clearance], count: count}
+          cart << discounted
+        end
+      end
+    end
+  end
+  cart
 end
 
 def apply_clearance(cart)
